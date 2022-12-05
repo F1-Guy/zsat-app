@@ -15,7 +15,7 @@
         <router-link to="/" class="nav-link px-2 active" aria-current="page">Home</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <router-link to="/sign-up/" class="nav-link">Sign up</router-link>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
