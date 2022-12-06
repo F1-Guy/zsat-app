@@ -35,7 +35,7 @@
 import { useUserStore } from '../lib/store';
 export default {
   setup() {
-    const userStore = useUserStore;
+    const userStore = useUserStore();
     return { userStore };
   },
 };
