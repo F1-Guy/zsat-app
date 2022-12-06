@@ -1,5 +1,4 @@
-<script>
-</script>
+
 
 <template>
 
@@ -20,6 +19,9 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Pricing</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" v-if="userStore.user">Welcome {{ userStore.user.userName }}</a>
+      </li>
       
     </ul>
 
@@ -28,3 +30,13 @@
 
 
 </template>
+
+<script>
+import { useUserStore } from '../lib/store';
+export default {
+  setup() {
+    const userStore = useUserStore;
+    return { userStore };
+  },
+};
+</script>
