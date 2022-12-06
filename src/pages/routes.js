@@ -1,22 +1,22 @@
 import { createRouter } from "vue-router";
 import Homepage from './home/Home.vue';
-import { SignUpComponent } from './user';
-import { SignInComponent } from './user';
+import SingIn from './user/sign-in/SignIn.vue';
+import SignUp from './user/sign-up/SignUp.vue';
 
 const routes = [
     {
         path: '/',
+        component: SingIn
+    },
+
+    {
+        path: '/signup/',
+        component: SignUp
+    },
+
+    {
+        path: '/home/',
         component: Homepage
-    },
-
-    {
-        path: '/sign-up/',
-        component: SignUpComponent
-    },
-
-    {
-        path: '/sign-in/',
-        component: SignInComponent
     },
 ]
 

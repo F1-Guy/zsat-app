@@ -1,23 +1,38 @@
-<script setup>
-import TopNavbar from '../../../components/TopNavbar.vue';
-</script>
 
-<template src="./sign-up.html"></template>
+<template src="./sign-up.html">
+</template>
 
-<style scoped src="./sign-up.css"></style>
+<style scoped src="./sign-up.css">
+
+</style>
 
 <script>
-import { mapState, mapActions } from 'pinia'
+import { useUserStore } from '../../../lib/store';
+import Navbar from '../../../components/Navbar.vue';
 
 export default {
-  components: {
-    TopNavbar
+  setup() {
+    const userStore = useUserStore();
+    return { userStore };
   },
 
   data() {
     return {
-
+      fullName: null,
+      username: null,
+      password: null,
     };
+  },
+
+  methods: {
+    async register() {
+      await this.userStore.signUp(this.username, this.password, this.fullName);
+      console.log(this.userStore.user.userName);
+    },
+  },
+
+  components: {
+    Navbar
   },
 };
 </script> 
