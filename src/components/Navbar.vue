@@ -20,7 +20,7 @@
             <router-link to="/signup" class="nav-link">Signup</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/signin" class="nav-link">Signin</router-link>
+            <router-link to="/" class="nav-link">Signin</router-link>
           </li>
         </ul>
       </div>

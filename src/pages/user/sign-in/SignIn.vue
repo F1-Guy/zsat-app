@@ -17,15 +17,15 @@ export default {
 
     data() {
         return {
-            userName: "",
-            password: "",
+            username: null,
+            password: null,
         };
     },
 
     methods: {
-        async register() {
-            await this.userStore.signUp(this.userName, this.password);
-            console.log(this.userStore.user.userName);
+        async signin() {
+            await this.userStore.signIn(this.username, this.password);
+            console.log(this.userStore.user.username, this.userStore.user.password);
         },
     },
 
@@ -33,4 +33,5 @@ export default {
         Navbar
     },
 };
+
 </script> 

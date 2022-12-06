@@ -18,14 +18,15 @@ export default {
 
   data() {
     return {
-      userName: "",
-      password: "",
+      fullName: null,
+      username: null,
+      password: null,
     };
   },
 
   methods: {
     async register() {
-      await this.userStore.signUp(this.userName, this.password);
+      await this.userStore.signUp(this.username, this.password, this.fullName);
       console.log(this.userStore.user.userName);
     },
   },
