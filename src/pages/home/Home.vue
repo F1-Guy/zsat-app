@@ -1,20 +1,16 @@
-<script setup>
-import TopNavbar from '../../components/TopNavbar.vue';
-
-</script>
-
-
 <template src="./home.html">
 </template>
 
-<style scoped src="./home.css"></style>
+<style scoped src="./home.css">
+
+</style>
 
 <script>
-import { mapState, mapActions } from 'pinia'
+import Navbar from '../../components/Navbar.vue';
 
 export default {
   components: {
-    TopNavbar
+    Navbar
   },
 
   data() {
