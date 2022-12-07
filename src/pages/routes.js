@@ -1,12 +1,13 @@
 import { createRouter } from "vue-router";
 import Homepage from './home/Home.vue';
-import SingIn from './user/sign-in/SignIn.vue';
+import SignIn from './user/sign-in/SignIn.vue';
 import SignUp from './user/sign-up/SignUp.vue';
+import StudentsPage from './students/Students.vue';
 
 const routes = [
     {
         path: '/',
-        component: SingIn
+        component: SignIn
     },
 
     {
@@ -18,6 +19,11 @@ const routes = [
         path: '/home/',
         component: Homepage
     },
+
+    {
+        path: '/students/',
+        component: StudentsPage
+    }
 ]
 
 export default function (history) {
