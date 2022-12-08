@@ -8,10 +8,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link to="/home" class="nav-link">Home</router-link>
+            <router-link to="/" class="nav-link">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/home" class="nav-link">Attendances</router-link>
+            <router-link to="/" class="nav-link">Attendances</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/students" class="nav-link">Students</router-link>
@@ -20,7 +20,7 @@
             <router-link to="/signup" class="nav-link">Signup</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/" class="nav-link">Signin</router-link>
+            <router-link to="/signin" class="nav-link">Signin</router-link>
           </li>
         </ul>
       </div>
