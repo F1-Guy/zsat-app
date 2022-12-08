@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { defineStore } from 'pinia';
 
 export const useUserStore = defineStore("user", {
@@ -17,10 +17,16 @@ export const useUserStore = defineStore("user", {
         },
 
         async signIn(userName, password) {
-            const response = await axios.post(`http://localhost:5246/api/AuthUsers/SignIn?userName=${userName}&password=${password}`);
-            const user = await response.data;
-            this.user = user;
-            this.authenticated = true;
+            try {
+                const response = await axios.post(`http://localhost:5246/api/AuthUsers/SignIn?userName=${userName}&password=${password}`)
+                const user = await response.data;
+                this.user = user;
+                this.authenticated = true;
+            } catch (error) {
+                console.error(error);
+            }
+            
+
         }
     }
 })
