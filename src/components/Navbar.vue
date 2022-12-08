@@ -29,6 +29,9 @@
           <li class="nav-item">
             <a class="nav-link" v-if="userStore.user">Welcome {{ userStore.user.userName }}</a>
           </li>
+          <li class="nav-item">
+            <router-link to="/" class="btn btn-danger" v-if="userStore.user" v-on:click="logout">Logout</router-link>
+          </li>x
         </ul>
       </div>
     </div>
@@ -43,5 +46,12 @@ export default {
     const userStore = useUserStore();
     return { userStore };
   },
+
+  methods: {
+    logout() {
+      this.userStore.user = null;
+      this.userStore.authenticated = false;
+    }
+  }
 };
 </script>
