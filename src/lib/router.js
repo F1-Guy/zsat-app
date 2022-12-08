@@ -3,6 +3,7 @@ import Homepage from '../pages/home/Home.vue';
 import SignIn from '../pages/user/sign-in/SignIn.vue';
 import SignUp from '../pages/user/sign-up/SignUp.vue';
 import StudentsPage from '../pages/students/Students.vue';
+import AttendancesPage from '../pages/attendances/Attendances.vue';
 import { useUserStore } from "./store";
 
 const routes = [
@@ -24,6 +25,11 @@ const routes = [
     {
         path: '/students/',
         component: StudentsPage,
+    },
+
+    {
+        path: '/attendances/',
+        component: AttendancesPage
     },
 ]
 
