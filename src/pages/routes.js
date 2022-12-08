@@ -3,6 +3,7 @@ import Homepage from './home/Home.vue';
 import SignIn from './user/sign-in/SignIn.vue';
 import SignUp from './user/sign-up/SignUp.vue';
 import StudentsPage from './students/Students.vue';
+import AttendancesPage from './attendances/Attendances.vue';
 
 const routes = [
     {
@@ -13,6 +14,11 @@ const routes = [
     {
         path: '/signup/',
         component: SignUp
+    },
+
+    {
+        path: '/attendances/',
+        component: AttendancesPage
     },
 
     {
