@@ -1,0 +1,30 @@
+<Navbar />
+
+<div class="container">
+    <div class="row mx-5 my-5">
+        <div class="col gx-lg-5 align-items-center">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Check in</th>
+                        <th scope="col">Lesson ID</th>
+                        <th scope="col">Student Card ID</th>
+                        <th scope="col">Check out</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="a in attendances">
+                        <th scope="row">{{ a.id }}</th>
+                        <td>{{ a.checkIn }}</td>
+                        <td>{{ a.lessonId }}</td>
+                        <td>{{ a.studentCardId }}</td>
+                        <td>{{ a.checkOut }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+
+        </div>
+    </div>
+</div>
