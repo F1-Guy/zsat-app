@@ -17,6 +17,9 @@
             <router-link to="/students" class="nav-link">Students</router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/lessons" class="nav-link">Lessons</router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/signup" class="nav-link">Signup</router-link>
           </li>
           <li class="nav-item">

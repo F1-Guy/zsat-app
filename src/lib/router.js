@@ -4,6 +4,7 @@ import SignIn from '../pages/user/sign-in/SignIn.vue';
 import SignUp from '../pages/user/sign-up/SignUp.vue';
 import StudentsPage from '../pages/students/Students.vue';
 import AttendancesPage from '../pages/attendances/Attendances.vue';
+import LessonsPage from '../pages/lessons/Lessons.vue';
 import { useUserStore } from "./store";
 
 const routes = [
@@ -31,6 +32,11 @@ const routes = [
         path: '/attendances/',
         component: AttendancesPage
     },
+
+    {
+        path: '/lessons/',
+        component: LessonsPage
+    }
 ]
 
 const router = createRouter({

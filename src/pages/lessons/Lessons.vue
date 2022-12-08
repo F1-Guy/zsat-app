@@ -1,7 +1,7 @@
-<template src='./attendances.html'>
+<template src='./lessons.html'>
 </template>
 
-<style scoped src='./attendances.css'>
+<style scoped src='./lessons.css'>
 </style>
 
 <script>
@@ -17,26 +17,23 @@ export default {
 
     data() {
         return {
-            attendances:[],
+            lessons:[],
             id: null,
-            checkin: null,
-            lessonid: null,
-            studentcardid: null,
-            checkout:null
+            subject: null
         };
     },
 
     methods: {
-        async getAttendances() {
-            const response = await axios.get('http://localhost:5246/api/attendances');
-            this.attendances = await response.data;
+        async getLessons() {
+            const response = await axios.get('http://localhost:5246/api/lessons');
+            this.lessons = await response.data;
         },
 
         
     },
 
     mounted() {
-        this.getAttendances();
+        this.getLessons();
     },
 
     components: {
