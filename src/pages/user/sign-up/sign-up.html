@@ -17,6 +17,7 @@
           <div class="card">
             <div class="card-body py-5 px-md-5">
               <form @submit.prevent="register">
+                <vue3-loading-overlay :active="isLoading" :color="color" />
                 <h4>Create an account at ZSAT</h4> <br>
 
                 <!-- Full name input -->
