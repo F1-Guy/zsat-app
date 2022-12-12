@@ -21,18 +21,32 @@ export default {
             cardId: null,
             name: null,
             email: null,
+            isLoading: false,
+            color: "#0d6efd",
         };
     },
 
     methods: {
         async getStudents() {
-            const response = await axios.get('http://localhost:5246/api/Students');
-            this.students = await response.data;
+            try {
+                this.isLoading = true;
+                const response = await axios.get('https://zsatservice.azurewebsites.net/api/Students');
+                this.students = await response.data;
+                this.isLoading = false;
+            } catch (error) {
+                console.error(error);
+            }
         },
 
         async addStudent() {
-            await axios.post(`http://localhost:5246/api/Students?cardId=${this.cardId}&name=${this.name}&email=${this.email}`)
-            this.getStudents();
+            try {
+                this.isLoading = true;
+                await axios.post(`https://zsatservice.azurewebsites.net/api/Students?cardId=${this.cardId}&name=${this.name}&email=${this.email}`)
+                this.getStudents();
+                this.isLoading = false;
+            } catch (error) {
+                console.error(error);
+            }
             this.cardId = null;
             this.name = null;
             this.email = null;

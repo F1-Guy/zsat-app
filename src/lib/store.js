@@ -10,15 +10,19 @@ export const useUserStore = defineStore("user", {
     // Change later to use a body with the request
     actions: {
         async signUp(userName, password, name) {
-            const response = await axios.post(`http://localhost:5246/api/AuthUsers/SignUp?userName=${userName}&password=${password}&fullName=${name}`);
-            const user = await response.data;
-            this.user = user;
-            this.authenticated = true;
+            try {
+                const response = await axios.post(`https://zsatservice.azurewebsites.net/api/AuthUsers/SignUp?userName=${userName}&password=${password}&fullName=${name}`);
+                const user = await response.data;
+                this.user = user;
+                this.authenticated = true;
+            } catch (error) {
+                console.error(error);
+            }
         },
 
         async signIn(userName, password) {
             try {
-                const response = await axios.post(`http://localhost:5246/api/AuthUsers/SignIn?userName=${userName}&password=${password}`)
+                const response = await axios.post(`https://zsatservice.azurewebsites.net/api/AuthUsers/SignIn?userName=${userName}&password=${password}`)
                 const user = await response.data;
                 this.user = user;
                 this.authenticated = true;

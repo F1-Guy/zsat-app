@@ -34,6 +34,7 @@
                         </div>
                         <div class="modal-body">
                             <form>
+                                <vue3-loading-overlay :active="isLoading" :color="color" />
                                 <!-- Card Id input -->
                                 <div class="form-outline mb-4">
                                   <label class="form-label" for="cardId">Card ID</label>
