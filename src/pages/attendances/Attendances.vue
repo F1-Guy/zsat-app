@@ -19,10 +19,12 @@ export default {
         return {
             attendances:[],
             id: null,
-            checkin: null,
-            lessonid: null,
-            studentcardid: null,
-            checkout:null
+            checkIn: null,
+            lessonId: null,
+            studentCardId: null,
+            checkOut:null
+            
+            
         };
     },
 
@@ -30,7 +32,6 @@ export default {
         async getAttendances() {
             const response = await axios.get('http://localhost:5246/api/attendances');
             this.attendances = await response.data;
-            console.log(this.attendances)
         },
 
         

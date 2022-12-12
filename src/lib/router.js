@@ -5,6 +5,7 @@ import SignUp from "../pages/user/sign-up/SignUp.vue";
 import StudentsPage from "../pages/students/Students.vue";
 import StudentAttendance from "../pages/students/studentAttendance/StudentAttendance.vue";
 import AttendancesPage from "../pages/attendances/Attendances.vue";
+import LessonsPage from '../pages/lessons/Lessons.vue';
 import { useUserStore } from "./store";
 
 const routes = [
@@ -37,6 +38,11 @@ const routes = [
     path: "/studentAttendance/:cardId",
     name: "StudentAttendance",
     component: StudentAttendance,
+  },
+  
+  {
+        path: '/lessons/',
+        component: LessonsPage
   },
 ];
 
