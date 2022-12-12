@@ -19,8 +19,8 @@ export default {
 
   methods: {
     async getStudentAttendances() {
-      const response = await axios.get("http://localhost:5246/api/Students/GetStudentAttendances?cardId=" + this.studentCardId);
-      const found = await axios.get("http://localhost:5246/api/Students/" + this.studentCardId);
+      const response = await axios.get("https://zsatservice.azurewebsites.net/api/Students/GetStudentAttendances?cardId=" + this.studentCardId);
+      const found = await axios.get("https://zsatservice.azurewebsites.net/api/Students/" + this.studentCardId);
       this.attendances = await response.data;
       this.name = await found.data.name;
     },
