@@ -19,13 +19,16 @@ export default {
         return {
             username: null,
             password: null,
+            isLoading: false,
+            color: "#0d6efd",
         };
     },
 
     methods: {
         async signin() {
+            this.isLoading = true;
             await this.userStore.signIn(this.username, this.password);
-            console.log(this.userStore.user.username, this.userStore.user.password);
+            this.isLoading = false;
         },
     },
 

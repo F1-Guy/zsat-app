@@ -21,13 +21,16 @@ export default {
       fullName: null,
       username: null,
       password: null,
+      isLoading: false,
+      color: "#0d6efd",
     };
   },
 
   methods: {
     async register() {
+      this.isLoading = true;
       await this.userStore.signUp(this.username, this.password, this.fullName);
-      console.log(this.userStore.user.userName);
+      this.isLoading = false;
     },
   },
 

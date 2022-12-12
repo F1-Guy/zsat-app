@@ -17,6 +17,7 @@
                     <div class="card">
                         <div class="card-body py-5 px-md-5">
                             <form @submit.prevent="signin">
+                                <vue3-loading-overlay :active="isLoading" :color="color" />
                                 <h4>Sign in</h4> <br>
                                 <!-- Username input -->
                                 <div class="form-outline mb-4">
