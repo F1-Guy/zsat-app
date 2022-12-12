@@ -19,7 +19,14 @@ export default {
         return {
             lessons:[],
             id: null,
-            subject: null
+            subject: null,
+            lessonAttendance:[],
+            id: null,
+            checkIn: null,
+            lessonId: null,
+            studentCardId: null,
+            checkOut:null,
+            show:true
         };
     },
 
@@ -30,6 +37,16 @@ export default {
         },
 
         
+        async getLessonAttendanceById(lessonId) {
+            const url = "http://localhost:5246/api/attendances/Filter?lessonId=" + lessonId
+            try {
+                const response = await axios.get(url)
+                this.lessonAttendance = await response.data
+            } catch (ex) {
+                alert(ex.message)
+            }
+
+        }
     },
 
     mounted() {

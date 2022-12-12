@@ -19,10 +19,12 @@ export default {
         return {
             attendances:[],
             id: null,
-            checkin: null,
-            lessonid: null,
-            studentcardid: null,
-            checkout:null
+            checkIn: null,
+            lessonId: null,
+            studentCardId: null,
+            checkOut:null
+            
+            
         };
     },
 
