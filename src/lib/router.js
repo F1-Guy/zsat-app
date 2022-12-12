@@ -4,6 +4,7 @@ import SignIn from '../pages/user/sign-in/SignIn.vue';
 import SignUp from '../pages/user/sign-up/SignUp.vue';
 import StudentsPage from '../pages/students/Students.vue';
 import AttendancesPage from '../pages/attendances/Attendances.vue';
+import GraphPage from '../pages/graph/Graph.vue';
 import { useUserStore } from "./store";
 
 const routes = [
@@ -31,6 +32,11 @@ const routes = [
         path: '/attendances/',
         component: AttendancesPage
     },
+
+    {
+        path: '/graph/',
+        component: GraphPage
+    }
 ]
 
 const router = createRouter({
@@ -38,18 +44,18 @@ const router = createRouter({
     routes
 })
 
-router.beforeEach((to, from, next) => {
-    const store = useUserStore()
+// router.beforeEach((to, from, next) => {
+//     const store = useUserStore()
 
-    if (store.$state.authenticated) {
-        next();
-    } else {
-        if (to.path !== '/signin/') {
-            next({ path: '/signin/' });
-        } else {
-            next();
-        }
-    }
-})
+//     if (store.$state.authenticated) {
+//         next();
+//     } else {
+//         if (to.path !== '/signin/') {
+//             next({ path: '/signin/' });
+//         } else {
+//             next();
+//         }
+//     }
+// })
 
 export default router

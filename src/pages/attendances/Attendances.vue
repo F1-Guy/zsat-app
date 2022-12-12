@@ -2,6 +2,7 @@
 </template>
 
 <style scoped src='./attendances.css'>
+
 </style>
 
 <script>
@@ -17,23 +18,21 @@ export default {
 
     data() {
         return {
-            attendances:[],
+            attendances: [],
             id: null,
             checkin: null,
             lessonid: null,
             studentcardid: null,
-            checkout:null
+            checkout: null
         };
     },
 
     methods: {
         async getAttendances() {
-            const response = await axios.get('http://localhost:5246/api/attendances');
+            const response = await axios.get('https://zsatservice.azurewebsites.net/api/Attendances');
             this.attendances = await response.data;
             console.log(this.attendances)
         },
-
-        
     },
 
     mounted() {
