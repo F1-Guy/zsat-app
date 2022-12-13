@@ -14,6 +14,9 @@
             <router-link to="/attendances" class="nav-link">Attendances</router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/graph" class="nav-link">Graph</router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/todaysAttendance" class="nav-link">TodaysAttendance</router-link>
           </li>
           <li class="nav-item">
