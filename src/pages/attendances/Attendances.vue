@@ -1,45 +1,43 @@
-<template src='./attendances.html'>
-</template>
+<template src="./attendances.html"></template>
 
-<style scoped src='./attendances.css'>
-</style>
+<style scoped src="./attendances.css"></style>
 
 <script>
-import axios from 'axios';
-import Navbar from '../../components/Navbar.vue';
-import { useUserStore } from '../../lib/store';
+import axios from "axios";
+import Navbar from "../../components/Navbar.vue";
+import { useUserStore } from "../../lib/store";
 
 export default {
-    setup() {
-        const userStore = useUserStore();
-        return { userStore };
+  setup() {
+    const userStore = useUserStore();
+    return { userStore };
+  },
+
+  data() {
+    return {
+      attendances: [],
+      isLoading: false,
+      id: null,
+      checkIn: null,
+      lessonId: null,
+      studentCardId: "",
+      checkOut: null,
+      addMessage: "",
+      addData: { cardId: null, lessonId: null },
+      color: "#0d6efd",
+    };
+  },
+
+  methods: {
+    async getAttendances() {
+      const response = await axios.get("http://localhost:5246/api/attendances");
+      this.attendances = await response.data;
     },
 
-    data() {
-        return {
-            attendances:[],
-            id: null,
-            checkIn: null,
-            lessonId: null,
-            studentCardId: null,
-            checkOut:null,
-            addMessage:"",
-            addData:{cardId:null, lessonId:null}
-            
-            
-        };
-    },
-
-    methods: {
-        async getAttendances() {
-            const response = await axios.get('http://localhost:5246/api/attendances');
-            this.attendances = await response.data;
-        },
-
-        async addAttendance() {
+    async addAttendance() {
       try {
         this.isLoading = true;
-        await axios.post(`http://localhost:5246/api/attendances?cardId=${this.cardId}&lessonId=${this.lessonId}`);
+        result = await axios.post(`http://localhost:5246/api/Attendances?cardId=${this.studentCardId}&lessonId=${this.lessonId}`);
         this.getAttendances();
         this.isLoading = false;
       } catch (error) {
@@ -48,15 +46,14 @@ export default {
       this.cardId = null;
       this.lessonId = null;
     },
-  
-    },
+  },
 
-    mounted() {
-        this.getAttendances();
-    },
+  mounted() {
+    this.getAttendances();
+  },
 
-    components: {
-        Navbar
-    },
+  components: {
+    Navbar,
+  },
 };
 </script>
