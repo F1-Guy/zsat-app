@@ -13,6 +13,7 @@ import { useUserStore } from "./store";
 const routes = [
   {
     path: "/signin/",
+    name: "SignIn",
     component: SignIn,
   },
 
@@ -23,6 +24,7 @@ const routes = [
 
   {
     path: "/",
+    name: "Home",
     component: Homepage,
   },
 

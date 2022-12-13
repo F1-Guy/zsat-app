@@ -6,11 +6,13 @@
 import axios from "axios";
 import Navbar from "../../components/Navbar.vue";
 import { useUserStore } from "../../lib/store";
+import { useToast } from 'vue-toastification';
 
 export default {
   setup() {
     const userStore = useUserStore();
-    return { userStore };
+    const toast = useToast();
+    return { userStore, toast };
   },
 
   data() {
@@ -54,8 +56,10 @@ export default {
         await axios.post(`https://zsatservice.azurewebsites.net/api/Students?cardId=${this.cardId}&name=${this.name}&email=${this.email}`);
         this.getStudents();
         this.isLoading = false;
+        this.toast.success("You have successfully added a student.");
       } catch (error) {
         console.error(error);
+        this.toast.error("Something went wrong. Try again.");
       }
       this.cardId = null;
       this.name = null;

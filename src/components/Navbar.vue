@@ -8,28 +8,25 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link to="/" class="nav-link">Home</router-link>
+            <router-link to="/" class="nav-link" v-if="userStore.authenticated">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/attendances" class="nav-link">Attendances</router-link>
+            <router-link to="/attendances" class="nav-link" v-if="userStore.authenticated">Attendances</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/graph" class="nav-link">Graph</router-link>
+            <router-link to="/graph" class="nav-link" v-if="userStore.authenticated">Graph</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/todaysAttendance" class="nav-link">TodaysAttendance</router-link>
+            <router-link to="/todaysAttendance" class="nav-link" v-if="userStore.authenticated">TodaysAttendance</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/students" class="nav-link">Students</router-link>
+            <router-link to="/students" class="nav-link" v-if="userStore.authenticated">Students</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/lessons" class="nav-link">Lessons</router-link>
+            <router-link to="/lessons" class="nav-link" v-if="userStore.authenticated">Lessons</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/signup" class="nav-link">Signup</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/signin" class="nav-link">Signin</router-link>
+            <router-link to="/signin" class="nav-link" v-if="!userStore.authenticated">Signin</router-link>
           </li>
         </ul>
       </div>
@@ -50,17 +47,21 @@
 
 <script>
 import { useUserStore } from "../lib/store";
+import { useToast } from "vue-toastification";
 
 export default {
   setup() {
     const userStore = useUserStore();
-    return { userStore };
+    const toast = useToast();
+    return { userStore, toast };
   },
 
   methods: {
     logout() {
       this.userStore.user = null;
       this.userStore.authenticated = false;
+      this.toast.success("You are now logged out.")
+      this.$router.push( {name: "SignIn"} );
     },
   },
 };

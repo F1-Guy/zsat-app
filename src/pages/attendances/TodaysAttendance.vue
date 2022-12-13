@@ -21,7 +21,7 @@ export default {
 
   methods: {
     async getAttendances() {
-      const response = await axios.get("http://localhost:5246/api/Attendances/GetTodaysAttendance");
+      const response = await axios.get("https://zsatservice.azurewebsites.net/api/Attendances/GetTodaysAttendance");
       this.checkedIn = await response.data.item1;
       this.notCheckedIn = await response.data.item2;
     },

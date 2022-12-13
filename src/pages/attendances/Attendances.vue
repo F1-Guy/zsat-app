@@ -10,11 +10,13 @@
 import axios from "axios";
 import Navbar from "../../components/Navbar.vue";
 import { useUserStore } from "../../lib/store";
+import { useToast } from 'vue-toastification';
 
 export default {
   setup() {
     const userStore = useUserStore();
-    return { userStore };
+    const toast = useToast();
+    return { userStore, toast };
   },
 
   data() {
@@ -34,19 +36,21 @@ export default {
 
   methods: {
     async getAttendances() {
-      const response = await axios.get("http://localhost:5246/api/attendances");
+      const response = await axios.get("https://zsatservice.azurewebsites.net/api/attendances");
       this.attendances = await response.data;
     },
     
     async addAttendance() {
       try {
         this.isLoading = true;
-        result = await axios.post(`http://localhost:5246/api/Attendances?cardId=${this.studentCardId}&lessonId=${this.lessonId}`);
+        result = await axios.post(`https://zsatservice.azurewebsites.net/api/Attendances?cardId=${this.studentCardId}&lessonId=${this.lessonId}`);
         
         this.getAttendances();
+        this.toast.success("You have successfully added an attendance.");
         this.isLoading = false;
       } catch (error) {
         console.error(error);
+        this.toast.error("Something went wrong. Try again.");
       }
       this.cardId = null;
       this.lessonId = null;

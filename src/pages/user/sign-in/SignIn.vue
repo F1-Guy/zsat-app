@@ -8,11 +8,13 @@
 <script>
 import { useUserStore } from '../../../lib/store';
 import Navbar from '../../../components/Navbar.vue';
+import { useToast } from 'vue-toastification';
 
 export default {
     setup() {
         const userStore = useUserStore();
-        return { userStore };
+        const toast = useToast();
+        return { userStore, toast };
     },
 
     data() {
@@ -29,6 +31,9 @@ export default {
             this.isLoading = true;
             await this.userStore.signIn(this.username, this.password);
             this.isLoading = false;
+            this.toast.success("You have successfully logged in to ZSAT.")
+            this.$router.push( {name: "Home"} );
+
         },
     },
 
