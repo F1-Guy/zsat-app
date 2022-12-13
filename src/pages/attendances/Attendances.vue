@@ -22,7 +22,9 @@ export default {
             checkIn: null,
             lessonId: null,
             studentCardId: null,
-            checkOut:null
+            checkOut:null,
+            addMessage:"",
+            addData:{cardId:null, lessonId:null}
             
             
         };
@@ -34,7 +36,19 @@ export default {
             this.attendances = await response.data;
         },
 
-        
+        async addAttendance() {
+      try {
+        this.isLoading = true;
+        await axios.post(`http://localhost:5246/api/attendances?cardId=${this.cardId}&lessonId=${this.lessonId}`);
+        this.getAttendances();
+        this.isLoading = false;
+      } catch (error) {
+        console.error(error);
+      }
+      this.cardId = null;
+      this.lessonId = null;
+    },
+  
     },
 
     mounted() {
