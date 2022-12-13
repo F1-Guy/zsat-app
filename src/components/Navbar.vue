@@ -17,7 +17,13 @@
             <router-link to="/graph" class="nav-link">Graph</router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/todaysAttendance" class="nav-link">TodaysAttendance</router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/students" class="nav-link">Students</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/lessons" class="nav-link">Lessons</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/signup" class="nav-link">Signup</router-link>
@@ -34,7 +40,8 @@
           </li>
           <li class="nav-item">
             <router-link to="/" class="btn btn-danger" v-if="userStore.user" v-on:click="logout">Logout</router-link>
-          </li>x
+          </li>
+          x
         </ul>
       </div>
     </div>
@@ -42,7 +49,7 @@
 </template>
 
 <script>
-import { useUserStore } from '../lib/store';
+import { useUserStore } from "../lib/store";
 
 export default {
   setup() {
@@ -54,7 +61,7 @@ export default {
     logout() {
       this.userStore.user = null;
       this.userStore.authenticated = false;
-    }
-  }
+    },
+  },
 };
 </script>
