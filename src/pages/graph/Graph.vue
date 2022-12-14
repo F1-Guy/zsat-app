@@ -19,8 +19,9 @@ export default {
     data() {
         return {
             attendances: [],
-            today: null,
-            past: null,
+            today: new Date(),
+            past: new Date(),
+            lookback: 6,
             graph: null,
         };
     },
@@ -30,9 +31,6 @@ export default {
         async extractGraphData(lookbackDays) {
             let dates = [];
             let checkinsOnDate = [];
-
-            this.today = new Date();
-            this.past = new Date();
 
             this.past.setDate(this.today.getDate() - lookbackDays);
             await this.getAttendances();
@@ -62,21 +60,32 @@ export default {
             this.attendances = await response.data;
         },
 
-        async getGraph(lookbackDays = 6, graphType = "line") {
-            let data = await this.extractGraphData(lookbackDays);
-            let str =
-                `
-            https://quickchart.io/chart?chart={
-                                                type: 'line',
-                                                data: {
-                                                labels: [${data[0]}],
-                                                datasets: [{
-                                                label: 'Checkins',
-                                                data: [${data[1]}],
-                                                fill: true}]
-                                               }}&width=400&height=170&format=svg`;
+        async getGraph() {
+            console.log("Calling getgraph with: " + this.lookback)
+
+
+            if (this.lookback < 0) {
+                this.lookback = 1
+            } else if (this.lookback > 30) {
+                this.lookback = 30
+            }
+
+            let data = await this.extractGraphData(this.lookback);
+            let str = `https://quickchart.io/chart?chart={
+                        type: 'line',
+                        data: {
+                            labels: [${data[0]}],
+                            datasets: [{
+                                label: 'Checkins',
+                                data: [${data[1]}],
+                                fill: true}]
+                        }}&width=400&height=170&format=svg`;
             const response = await axios.get(str);
             this.graph = await response.data;
+        },
+
+        updateValue(event) {
+            this.lookback = event.target.value;
         },
     },
 
