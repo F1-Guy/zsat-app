@@ -6,7 +6,7 @@ import StudentsPage from "../pages/students/Students.vue";
 import StudentAttendance from "../pages/students/studentAttendance/StudentAttendance.vue";
 import AttendancesPage from "../pages/attendances/Attendances.vue";
 import TodaysAttendance from "../pages/attendances/TodaysAttendance.vue";
-import GraphPage from '../pages/graph/Graph.vue';
+import GraphPage from "../pages/graph/Graph.vue";
 import LessonsPage from "../pages/lessons/Lessons.vue";
 import { useUserStore } from "./store";
 
@@ -53,11 +53,11 @@ const routes = [
     path: "/todaysAttendance/",
     component: TodaysAttendance,
   },
-  
+
   {
-    path: '/graph/',
-    component: GraphPage
-  }
+    path: "/graph/",
+    component: GraphPage,
+  },
 ];
 
 const router = createRouter({
