@@ -1,14 +1,10 @@
-<template src='./graph.html'>
-
-</template>
-<style scoped src='./graph.css'>
-
-</style>
+<template src="./graph.html"></template>
+<style scoped src="./graph.css"></style>
 
 <script>
-import axios from 'axios';
-import Navbar from '../../components/Navbar.vue';
-import { useUserStore } from '../../lib/store';
+import axios from "axios";
+import Navbar from "../../components/Navbar.vue";
+import { useUserStore } from "../../lib/store";
 
 export default {
     setup() {
@@ -23,6 +19,8 @@ export default {
             past: new Date(),
             lookback: 6,
             graph: null,
+            isLoading: false,
+            color: "#0d6efd",
         };
     },
 
@@ -48,21 +46,20 @@ export default {
                     }
                 }
 
-                dates.push(dayOfMonth)
-                checkinsOnDate.push(counter)
-            }
+        dates.push(dayOfMonth);
+        checkinsOnDate.push(counter);
+      }
 
-            return [dates, checkinsOnDate]
-        },
+      return [dates, checkinsOnDate];
+    },
 
-        async getAttendances() {
-            const response = await axios.get(`https://zsatservice.azurewebsites.net/api/Attendances/Filter?startDate=${this.past.toISOString()}&endDate=${this.today.toISOString()}`);
-            this.attendances = await response.data;
-        },
+    async getAttendances() {
+      const response = await axios.get(`https://zsatservice.azurewebsites.net/api/Attendances/Filter?startDate=${this.past.toISOString()}&endDate=${this.today.toISOString()}`);
+      this.attendances = await response.data;
+    },
 
         async getGraph() {
-            console.log("Calling getgraph with: " + this.lookback)
-
+            this.isLoading = true;
 
             if (this.lookback < 0) {
                 this.lookback = 1
@@ -82,25 +79,27 @@ export default {
                         }}&width=400&height=170&format=svg`;
             const response = await axios.get(str);
             this.graph = await response.data;
+            this.isLoading = false;
         },
 
         updateValue(event) {
             this.lookback = event.target.value;
         },
     },
+  },
 
-    async mounted() {
-        this.getGraph();
-    },
+  async mounted() {
+    this.getGraph();
+  },
 
-    components: {
-        Navbar
-    },
+  components: {
+    Navbar,
+  },
 
-    computed: {
-        svgCode() {
-            return this.graph;
-        }
+  computed: {
+    svgCode() {
+      return this.graph;
     },
+  },
 };
 </script>

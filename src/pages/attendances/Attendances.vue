@@ -1,16 +1,12 @@
 <template src="./attendances.html"></template>
 
-
-<style scoped src='./attendances.css'>
-
-</style>
+<style scoped src="./attendances.css"></style>
 
 <script>
-
 import axios from "axios";
 import Navbar from "../../components/Navbar.vue";
 import { useUserStore } from "../../lib/store";
-import { useToast } from 'vue-toastification';
+import { useToast } from "vue-toastification";
 
 export default {
   setup() {
@@ -23,13 +19,8 @@ export default {
     return {
       attendances: [],
       isLoading: false,
-      id: null,
-      checkIn: null,
-      lessonId: null,
-      studentCardId: "",
-      checkOut: null,
-      addMessage: "",
-      addData: { cardId: null, lessonId: null },
+      aId: null,
+      cardId: "",
       color: "#0d6efd",
     };
   },
@@ -39,21 +30,25 @@ export default {
       const response = await axios.get("https://zsatservice.azurewebsites.net/api/attendances");
       this.attendances = await response.data;
     },
-    
-    async addAttendance() {
+
+    async openModal(attId, sCardId) {
+      this.cardId = sCardId;
+      this.aId = attId;
+    },
+
+    async deleteAttendance() {
       try {
         this.isLoading = true;
-        result = await axios.post(`https://zsatservice.azurewebsites.net/api/Attendances?cardId=${this.studentCardId}&lessonId=${this.lessonId}`);
-        
+        await axios.delete(`https://zsatservice.azurewebsites.net/api/Attendances/${this.aId}`);
+
         this.getAttendances();
-        this.toast.success("You have successfully added an attendance.");
+        this.toast.success("You have successfully delete an attendance.");
         this.isLoading = false;
       } catch (error) {
         console.error(error);
         this.toast.error("Something went wrong. Try again.");
+        this.isLoading = false;
       }
-      this.cardId = null;
-      this.lessonId = null;
     },
   },
 
