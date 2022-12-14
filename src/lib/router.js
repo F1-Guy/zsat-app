@@ -53,7 +53,7 @@ const routes = [
     path: "/todaysAttendance/",
     component: TodaysAttendance,
   },
-  
+
   {
     path: '/graph/',
     component: GraphPage
@@ -65,18 +65,18 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  const store = useUserStore();
+// router.beforeEach((to, from, next) => {
+//   const store = useUserStore();
 
-  if (store.$state.authenticated) {
-    next();
-  } else {
-    if (to.path !== "/signin/") {
-      next({ path: "/signin/" });
-    } else {
-      next();
-    }
-  }
-});
+//   if (store.$state.authenticated) {
+//     next();
+//   } else {
+//     if (to.path !== "/signin/") {
+//       next({ path: "/signin/" });
+//     } else {
+//       next();
+//     }
+//   }
+// });
 
 export default router;

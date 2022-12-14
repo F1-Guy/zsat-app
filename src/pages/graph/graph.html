@@ -1,9 +1,21 @@
 <Navbar />
 
 <div class="container">
-    <div class="container h-100">
-        <div id="graph" class="d-flex justify-content-md-center align-items-center vh-100">
-            <div v-html="svgCode"></div>
+    <div class="row d-flex align-items-center justify-content-around mt-5">
+        <div class="col-auto">
+            <label for="lookback" class="col-form-label">Days to show:</label>
         </div>
+        <div class="col">
+            <input class="slider align-middle w-100" type="range" v-model="lookback" @input="updateValue" min="1" max="30">
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary" @click="getGraph()">Apply: {{this.lookback}}</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="d-flex justify-content-md-center align-items-center vh-100">
+        <div v-html="svgCode"></div>
     </div>
 </div>
