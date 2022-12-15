@@ -1,6 +1,8 @@
 <template src="./attendances.html"></template>
 
-<style scoped src="./attendances.css"></style>
+<style scoped src="./attendances.css">
+
+</style>
 
 <script>
 import axios from "axios";
@@ -40,7 +42,6 @@ export default {
       try {
         this.isLoading = true;
         await axios.delete(`https://zsatservice.azurewebsites.net/api/Attendances/${this.aId}`);
-
         this.getAttendances();
         this.toast.success("You have successfully delete an attendance.");
         this.isLoading = false;
@@ -52,8 +53,17 @@ export default {
     },
   },
 
-  mounted() {
-    this.getAttendances();
+  async mounted() {
+    await this.getAttendances();
+    console.log(this.attendances)
+
+    this.attendances.forEach(a => {
+      a.checkIn = new Date(a.checkIn);
+
+      if (a.checkOut != null) {
+        a.checkOut = new Date(a.checkOut)
+      }
+    });
   },
 
   components: {

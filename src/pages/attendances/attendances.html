@@ -7,9 +7,10 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Check in</th>
+            <th scope="col">Date</th>
             <th scope="col">Lesson ID</th>
-            <th scope="col">Student Card ID</th>
+            <th scope="col">Card ID</th>
+            <th scope="col">Check in</th>
             <th scope="col">Check out</th>
             <th></th>
           </tr>
@@ -17,10 +18,22 @@
         <tbody>
           <tr v-for="a in attendances">
             <th scope="row">{{ a.id }}</th>
-            <td>{{ a.checkIn }}</td>
+            <td>
+              {{ a.checkIn.toLocaleDateString('en-UK', {
+              weekday: 'short',
+              month: 'long',
+              day: 'numeric'
+              })}}
+            </td>
             <td>{{ a.lessonId }}</td>
             <td>{{ a.studentCardId }}</td>
-            <td>{{ a.checkOut }}</td>
+            <td>
+              {{ a.checkIn.toTimeString().substring(0, 5)}}
+            </td>
+            <td v-if="a.checkOut != null">
+              {{ a.checkOut.toTimeString().substring(0, 5) }}
+            </td>
+            <td v-else></td>
             <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" @click="openModal(a.id, a.studentCardId)">Delete</button></td>
           </tr>
         </tbody>
