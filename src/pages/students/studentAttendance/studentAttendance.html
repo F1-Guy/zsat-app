@@ -1,0 +1,28 @@
+<Navbar />
+
+<h1>Attendance for student: {{name}}</h1>
+
+<div class="container">
+  <div class="row mx-5 my-5">
+    <div class="col gx-lg-5 align-items-center">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Card Id</th>
+            <th scope="col">Date</th>
+            <th scope="col">Check-In</th>
+            <th scope="col">Check-Out</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="attendance in attendances">
+            <th scope="row">{{ studentCardId }}</th>
+            <td>{{ attendance.checkIn}}</td>
+            <td>{{ attendance.checkIn}}</td>
+            <td>{{ attendance.checkOut}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

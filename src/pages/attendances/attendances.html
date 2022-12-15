@@ -1,0 +1,75 @@
+<Navbar />
+
+<div class="container">
+  <div class="row mx-5 my-5">
+    <div class="col gx-lg-5 align-items-center">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Date</th>
+            <th scope="col">Lesson ID</th>
+            <th scope="col">Card ID</th>
+            <th scope="col">Check in</th>
+            <th scope="col">Check out</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="a in attendances">
+            <th scope="row">{{ a.id }}</th>
+            <td>
+              {{ a.checkIn.toLocaleDateString('en-UK', {
+              weekday: 'short',
+              month: 'long',
+              day: 'numeric'
+              })}}
+            </td>
+            <td>{{ a.lessonId }}</td>
+            <td>{{ a.studentCardId }}</td>
+            <td>
+              {{ a.checkIn.toTimeString().substring(0, 5)}}
+            </td>
+            <td v-if="a.checkOut != null">
+              {{ a.checkOut.toTimeString().substring(0, 5) }}
+            </td>
+            <td v-else></td>
+            <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" @click="openModal(a.id, a.studentCardId)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Delete modal -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Delete an attendance</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <vue3-loading-overlay :active="isLoading" :color="color" />
+                <!-- Attendance Id input -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="cardId">Attendance ID</label>
+                  <input type="text" id="cardId" class="form-control" v-model="aId" readonly />
+                </div>
+
+                <!--Student Id input -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="lessonId">Student Id</label>
+                  <input type="text" id="name" class="form-control" v-model="cardId" readonly />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-danger" v-on:click="deleteAttendance" data-bs-dismiss="modal">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
